@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bienvenido a AirWick</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="favicon_airwick.jpg" type="image/jpg">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green-dark: #3D5C3D;
+      --green-mid: #2d6e45;
+      --gold: #c9a227;
+      --font: 'Rubik', sans-serif;
+    }
+
+    body {
+      font-family: var(--font);
+      font-weight: 300;
+      background-color: var(--green-dark);
+    }
+
+    /* Subtle noise texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.3;
+    }
+
+    /* SVG headline images */
+    .svg-heading {
+      display: block;
+      width: 100%;
+      max-width: 540px;
+      height: auto;
+      margin: 0 auto;
+    }
+
+    .svg-subtitle {
+      display: block;
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(6px);
+      transition: transform 0.35s cubic-bezier(.22,.68,0,1.2), box-shadow 0.35s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.45);
+    }
+
+    .card-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #f5f0e8 0%, #ede4cc 100%);
+      color: var(--green-dark);
+      font-family: var(--font);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      padding: 0.85rem 2.2rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.35) 0%, transparent 60%);
+      border-radius: inherit;
+      pointer-events: none;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+      background: linear-gradient(135deg, #ffffff 0%, #f5edce 100%);
+    }
+
+    .btn-primary:active {
+      transform: scale(0.97);
+    }
+
+    .gold-divider {
+      width: 56px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), #e8c96a, var(--gold));
+      border-radius: 2px;
+      margin: 0 auto;
+    }
+
+    /* Fade-in on load */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-up {
+      animation: fadeUp 0.7s cubic-bezier(.22,.68,0,1.2) both;
+    }
+    .delay-1 { animation-delay: 0.15s; }
+    .delay-2 { animation-delay: 0.32s; }
+    .delay-3 { animation-delay: 0.48s; }
+    .delay-4 { animation-delay: 0.62s; }
+
+    .logo-ring {
+      box-shadow: 0 0 0 3px rgba(255,255,255,0.15), 0 0 24px rgba(80,200,100,0.3);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center px-4 py-12 relative">
+
+  <!-- Header -->
+  <header class="relative z-10 text-center mb-10 fade-up">
+
+    <!-- Logo -->
+    <div class="flex items-center justify-center gap-3 mb-6">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Air_Wick_logo.svg/200px-Air_Wick_logo.svg.png"
+        alt="Air Wick"
+        class="w-14 h-14 rounded-full logo-ring object-contain bg-white p-1"
+        onerror="this.style.display='none'"
+      />
+    </div>
+
+    <!-- Titular SVG -->
+    <img
+      src="bienvenido.svg"
+      alt="Bienvenido a Air Wick"
+      class="svg-heading mb-4"
+    />
+
+    <div class="gold-divider mb-4"></div>
+
+    <!-- Subtitular SVG -->
+    <img
+      src="subtitular.svg"
+      alt="Elige en qué campaña quieres participar"
+      class="svg-subtitle"
+    />
+
+  </header>
+
+  <!-- Cards grid: 1 col mobile → 3 cols desktop -->
+  <main class="relative z-10 w-full max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+
+    <!-- Card 1: Aparato -->
+    <div class="card rounded-3xl overflow-hidden flex flex-col fade-up delay-1">
+      <div class="flex-1 p-4 pb-2">
+        <img
+          src="imagen_aparato.png"
+          alt="Aromas del Mundo – Edición Limitada"
+          class="card-img rounded-2xl"
+          style="image-rendering: -webkit-optimize-contrast;"
+        />
+      </div>
+      <div class="p-6 pt-4 flex justify-center">
+        <a href="ariwick_aparato_.html" class="btn-primary text-sm md:text-base w-full text-center block">
+          Canjea aquí tu aparato gratis
+        </a>
+      </div>
+    </div>
+
+    <!-- Card 2: Aparato PT -->
+    <div class="card rounded-3xl overflow-hidden flex flex-col fade-up delay-2">
+      <div class="flex-1 p-4 pb-2">
+        <img
+          src="imagen_aparatopt.png"
+          alt="Aparato Air Wick – Promoción"
+          class="card-img rounded-2xl"
+          style="image-rendering: -webkit-optimize-contrast;"
+        />
+      </div>
+      <div class="p-6 pt-4 flex justify-center">
+        <a href="airwick_aparato_pt.html" class="btn-primary text-sm md:text-base w-full text-center block">
+          Canjea aquí tu aparato gratis
+        </a>
+      </div>
+    </div>
+
+    <!-- Card 3: La Casa de las Fragancias -->
+    <div class="card rounded-3xl overflow-hidden flex flex-col fade-up delay-3">
+      <div class="flex-1 p-4 pb-2">
+        <img
+          src="casafragancias.png"
+          alt="La Casa de las Fragancias"
+          class="card-img rounded-2xl"
+          style="image-rendering: -webkit-optimize-contrast;"
+        />
+      </div>
+      <div class="p-6 pt-4 flex justify-center">
+        <a href="airwick_casafragancias.html" class="btn-primary text-sm md:text-base w-full text-center block">
+          Canjea el cupón por tu recambio Air Wick aquí
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="relative z-10 mt-12 fade-up delay-4">
+    <a href="privacidad.pdf" class="text-white/40 hover:text-white/70 text-xs tracking-widest uppercase underline underline-offset-4 transition-colors">
+      Política de privacidad
+    </a>
+  </footer>
+
+</body>
+</html>
